@@ -13,7 +13,7 @@ NO* raiz = NULL;
 
 // headers
 // estrutura principal
-void menu();
+void menu(); 
 void inicializar();
 void inserir();
 void exibir();
@@ -204,16 +204,35 @@ NO* insereArvore(NO* no, int valor)
 
 }
 
-NO* girarDireita(NO* no)
-{
-	// sua implementação vai aqui
-	return no;
+NO* girarDireita(NO* y) {
+	NO* x = y->esq;
+	NO* z = x->dir;
+
+	
+	x->dir = y; 
+	y->esq = z;
+
+	
+	y->altura = max(alturaNo(y->esq), alturaNo(y->dir)) + 1;
+	x->altura = max(alturaNo(x->esq), alturaNo(x->dir)) + 1;
+
+	
+	return x;
 }
 
-NO* girarEsquerda(NO* no)
-{
-	// sua implementação vai aqui
-	return no;
+
+NO* girarEsquerda(NO* x) {
+	NO* y = x->dir;
+	NO* z = y->esq;
+
+	y->esq = x;
+	x->dir = z;
+
+	x->altura = max(alturaNo(x->esq), alturaNo(x->dir)) + 1;
+	y->altura = max(alturaNo(y->esq), alturaNo(y->dir)) + 1;
+
+	
+	return y;
 }
 
 int elementosArvore(NO* no)
